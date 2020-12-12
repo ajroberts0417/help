@@ -74,3 +74,18 @@ Sometimes, a configuration error can cause Postgres to fail on startup. To check
 ```sh
 pg_ctl status
 ```
+
+
+## Problems with Psycopg2 for MacOS
+
+Openssl is a dependency for `psycopg2`, and the installation might fail if the linked library isn't the right version. If this command fails with clang error 1—and you are on macOS—ensure Xcode is installed with `xcode-select--install` and ensure openssl is linked by running:
+
+```sh
+env LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib" make install-dev
+```
+
+If this command fails with clang error 1 and `error: architecture not supported`, add the `ARCHFLAGS` option as well:
+
+```sh
+env LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib" ARCHFLAGS="-arch i386 -arch x86_64" make install-dev
+```
