@@ -76,7 +76,7 @@ pg_ctl status
 ```
 
 
-## Problems with Psycopg2 for MacOS
+# Problems with Psycopg2 for MacOS
 
 Openssl is a dependency for `psycopg2`, and the installation might fail if the linked library isn't the right version. If this command fails with clang error 1—and you are on macOS—ensure Xcode is installed with `xcode-select--install` and ensure openssl is linked by running:
 
