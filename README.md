@@ -50,10 +50,8 @@ Now install pipenv with a User installation:
 pip install --user pipenv
 ```
 
-**NOTE:** If pipenv isn't available in your console after installing and running `refreshenv`
-you will need to add the user base's binary directory to your PATH.
-
-On Windows you can find the user base binary directory by running `py -m site --user-site` and replacing site-packages with Scripts. For example, this could return `C:\Users\Username\AppData\Roaming\Python36\site-packages` so you would need to set your PATH to include `C:\Users\Username\AppData\Roaming\Python36\Scripts`. You can set your user PATH permanently in the Control Panel. You may need to run `refreshenv` for the changes to take effect.
+> :warning: **NOTE:** If pipenv isn't available in your console after installing and running `refreshenv`
+you will need to add the user base's binary directory to your PATH. On Windows you can find the user base binary directory by running `py -m site --user-site` and replacing site-packages with Scripts. For example, this could return `C:\Users\Username\AppData\Roaming\Python36\site-packages` so you would need to set your PATH to include `C:\Users\Username\AppData\Roaming\Python36\Scripts`. You can set your user PATH permanently in the Control Panel. You may need to run `refreshenv` for the changes to take effect.
 
 **NOTE 2:** dependencies will only be available within the `pipenv` virtualenv. Enter the virtualenv with `pipenv shell`, or run a single command with `pipenv run my-cool-command`.
 
