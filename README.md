@@ -89,3 +89,106 @@ If this command fails with clang error 1 and `error: architecture not supported`
 ```sh
 env LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib" ARCHFLAGS="-arch i386 -arch x86_64" make install-dev
 ```
+
+
+# Deploying a Django app to heroku
+https://devcenter.heroku.com/articles/django-app-configuration
+
+Deploying a new heroku app to Django
+
+
+#### 0. Install dependencies
+`pipenv install gunicorn django-heroku`
+
+#### 1. Configuration
+A. At the bottom of your settings.py:
+
+```
+import django_heroku
+
+# SECURITY
+SECURE_SSL_REDIRECT = True
+if SERVICE_ENV == "dev":
+    SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = True
+# SECURE_HSTS_SECONDS = 600
+SECURE_REDIRECT_EXEMPT = [
+    "127.0.0.1",
+    "0.0.0.0",
+    "localhost",
+]
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
+```
+
+B. Configure ALLOWED_HOSTS in settings.py:
+```
+ALLOWED_HOSTS: List[str] = [
+    "127.0.0.1",
+    "0.0.0.0",
+    "localhost",
+    "appname.herokuapp.com",
+    "weird-name-12345.herokuapp.com",
+    "web.site",
+]
+```
+
+C. Configure Postgres in settings.py:
+```
+# Database
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env("PGDBNAME", default=None),
+        "USER": env("POSTGRES_USER", default=None),
+        "PASSWORD": env("POSTGRES_PASSWORD", default=""),
+        "HOST": "localhost",
+        "PORT": "5432",
+    }
+}
+```
+
+D. Then, create a Makefile with a release command:
+```
+# scripts to run in the "release" phase of the deploy process
+# https://devcenter.heroku.com/articles/release-phase
+.PHONY: release
+release:
+	set -e pipefail
+	python manage.py migrate && \
+	python manage.py check --deploy
+```
+
+E. Then create a Procfile in your project root like this:
+```
+release: make release
+web: gunicorn <myproject>.wsgi
+```
+
+where `myproject.wsgi` is dot notation pointing to the `wsgi.py` file in your project directory.
+
+
+#### 2. Create a heroku project:
+In your project root, using the heroku cli run:
+`heroku create`
+
+#### 3. Set environment variables:
+for instance:
+`heroku config:set SECRET_KEY=<secret_key>`
+
+#### 4. Push
+`heroku push origin main`
+
+#### 5. Add a custom domain
+`heroku domains:add mysite.com`
+
+Then run:
+`heroku domains`
+
+And add the record to DNS:
+`ALIAS | @ | weird-name-kvpstcwb78masdadsh12387asdhr.herokudns.com`
