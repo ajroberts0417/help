@@ -97,10 +97,10 @@ https://devcenter.heroku.com/articles/django-app-configuration
 Deploying a new heroku app to Django
 
 
-#### 0. Install dependencies
+### 0. Install dependencies
 `pipenv install gunicorn django-heroku`
 
-#### 1. Configuration
+### 1. Configuration
 A. At the bottom of your settings.py:
 
 ```
@@ -173,18 +173,18 @@ web: gunicorn <myproject>.wsgi
 where `myproject.wsgi` is dot notation pointing to the `wsgi.py` file in your project directory.
 
 
-#### 2. Create a heroku project:
+### 2. Create a heroku project:
 In your project root, using the heroku cli run:
 `heroku create`
 
-#### 3. Set environment variables:
+### 3. Set environment variables:
 for instance:
 `heroku config:set SECRET_KEY=<secret_key>`
 
-#### 4. Push
+### 4. Push
 `heroku push origin main`
 
-#### 5. Add a custom domain
+### 5. Add a custom domain
 `heroku domains:add mysite.com`
 
 Then run:
