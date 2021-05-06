@@ -12,6 +12,9 @@ My personal recommendation is [Cmder](http://cmder.net/)
 #### Step 1: Install Chocolatey, a package manager for windows
 
 Install [chocolatey](https://chocolatey.org/install)
+```
+@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+```
 
 #### Step 2: Install make
 
