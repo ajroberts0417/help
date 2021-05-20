@@ -94,6 +94,18 @@ env LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib" ARCH
 ```
 
 
+# Problems with Pipenv Install
+
+If command fails with `clang failed with exit code 1` or
+```sh
+ERROR: Couldn't install package: psycopg2
+Package installation failed...
+```
+then run: 
+```sh
+CC=gcc pipenv install
+```
+
 # Deploying a Django app to heroku
 https://devcenter.heroku.com/articles/django-app-configuration
 
