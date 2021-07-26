@@ -13,12 +13,20 @@ For helpful pieces of code and installation instructions that I don't want to lo
 
 4. Update gitconfig
 `code ~/.gitconfig`
+
+Add this:
 ```md
 # This is Git's per-user configuration file.
 [user]
 # Please adapt and uncomment the following lines:
 	name = Andrew Roberts
 	email = ajroberts0417@gmail.com
+```
+
+5. Install postgres
+```sh
+brew install postgresql
+brew services start postgresql
 ```
 
 ## Installing Python
@@ -125,10 +133,10 @@ pg_ctl status
 
 # Problems with Psycopg2 for MacOS
 
-Openssl is a dependency for `psycopg2`, and the installation might fail if the linked library isn't the right version. If this command fails with clang error 1—and you are on macOS—ensure Xcode is installed with `xcode-select--install` and ensure openssl is linked by running:
+Openssl is a dependency for `psycopg2`, and the installation might fail if the linked library isn't the right version. If this command fails with clang error 1—and you are on macOS—ensure Xcode is installed with `xcode-select --install` and ensure openssl is linked by running:
 
 ```sh
-env LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib" make install-dev
+env LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib" pipenv install --dev
 ```
 
 If this command fails with clang error 1 and `error: architecture not supported`, add the `ARCHFLAGS` option as well:
