@@ -9,6 +9,18 @@ For helpful pieces of code and installation instructions that I don't want to lo
 2. Install [hub](https://github.com/github/hub) extension
 `brew install hub`
 
+3. (Add SSH key)[https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account] for github
+
+4. Update gitconfig
+`code ~/.gitconfig`
+```md
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = Andrew Roberts
+	email = ajroberts0417@gmail.com
+```
+
 ## Installing Python
 Managing python environments can be tricky, even for experienced developers. One easy tool to do so is [pyenv](https://github.com/pyenv/pyenv).
 Here's how you can use pyenv to install a python 3.9 environment
