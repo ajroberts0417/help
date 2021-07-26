@@ -1,6 +1,38 @@
 # help
 For helpful pieces of code and installation instructions that I don't want to lose
 
+# New Computer Setup
+## Some basics
+1. Install homebrew (see [installing homebrew](https://brew.sh/))
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+
+2. Install [hub](https://github.com/github/hub) extension
+`brew install hub`
+
+## Installing Python
+Managing python environments can be tricky, even for experienced developers. One easy tool to do so is [pyenv](https://github.com/pyenv/pyenv).
+Here's how you can use pyenv to install a python 3.9 environment
+
+1. Install pyenv (see [pyenv installer](https://github.com/pyenv/pyenv-installer))
+`curl https://pyenv.run | bash` 
+
+NOTE: make sure to follow the steps in your terminal after this installation!
+
+1b.  Restart your shell so the changes take effect.
+
+2. Install the latest version of python 3.9 using pyenv
+`pyenv install 3.9.2`
+
+3. Use this version locally in your qrono project
+(Note: make sure you're in the `qrono` directory!)
+`pyenv local 3.9.2`
+
+3b. Alternatively, if you want 3.9.2 to be your global version of python:
+`pyenv global 3.9.2`
+
+4. Install the latest version of pipenv:
+`pip install pipenv`
+
 
 # Windows Installation of Python Environment
 ### Windows
